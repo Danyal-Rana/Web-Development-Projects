@@ -1,61 +1,59 @@
-let hours = 0;
-let minutes = 0;
-let seconds = 0;
-let tens = 0;
-let interval;
+window.onload = function () {
+    let minutes = 0;
+    let seconds = 0;
+    let tens = 0;
+    let appendMinutes = document.querySelector("#minutes");
+    let appendTens = document.querySelector("#tens");
+    let appendSeconds = document.querySelector("#seconds");
+    let startBtn = document.querySelector("#start");
+    let stopBtn = document.querySelector("#stop");
+    let resetBtn = document.querySelector("#reset");
+    let Interval;
 
-const startButton = document.getElementById('start');
-const stopButton = document.getElementById('stop');
-const resetButton = document.getElementById('reset');
-const hoursElement = document.getElementById('hours');
-const minsElement = document.getElementById('mins');
-const tensElement = document.getElementById('tens');
+    const startTimer = () => {
+        tens++;
+        if (tens <= 9) {
+            appendTens.innerHTML = "0" + tens;
+        }
+        if (tens > 9) {
+            appendTens.innerHTML = tens;
+        }
 
-// Function to update the stopwatch display
-function updateDisplay() {
-    hoursElement.innerHTML = hours.toString().padStart(2, "0");
-    minsElement.innerHTML = minutes.toString().padStart(2, "0");
-    tensElement.innerHTML = tens.toString().padStart(2, "0");
-}
+        if (tens > 99) {
+            seconds++;
+            appendSeconds.innerHTML = "0" + seconds;
+            tens = 0;
+            appendTens.innerHTML = "0" + 0;
+        }
 
-// Function to start the stopwatch
-function startTimer() {
-    console.log (`${minutes}:${seconds}:${tens}`)
-    tens++;
+        if (seconds > 9) {
+            appendSeconds.innerHTML = seconds;
+        }
 
-    if (tens === 10) {
-        seconds++;
-        tens = 0;
-    }
+        if (seconds > 59) {
+            minutes++;
+            appendMinutes.innerHTML = "0" + minutes;
+            seconds = 0;
+            appendSeconds.innerHTML = "0" + 0;
+        }
+    };
 
-    if (seconds === 60) {
-        minutes++;
-        seconds = 0;
-    }
+    startBtn.onclick = () => {
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10);
+    };
 
-    if (minutes === 60) {
-        hours++;
-        minutes = 0;
-    }
+    stopBtn.onclick = () => {
+        clearInterval(Interval);
+    };
 
-    updateDisplay();
-}
-
-// Start button click event listener
-startButton.addEventListener('click', () => {
-    clearInterval(interval);
-    interval = setInterval(startTimer, 10);
-});
-
-// Stop button click event listener
-stopButton.addEventListener('click', () => clearInterval(interval));
-
-// Reset button click event listener
-resetButton.addEventListener('click', () => {
-    clearInterval(interval);
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-    tens = 0;
-    updateDisplay();
-});
+    resetBtn.onclick = () => {
+        clearInterval(Interval);
+        tens = "00";
+        seconds = "00";
+        minutes = "00";
+        appendTens.innerHTML = tens;
+        appendSeconds.innerHTML = seconds;
+        appendMinutes.innerHMTL = minutes;
+    };
+};
