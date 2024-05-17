@@ -1,4 +1,4 @@
-const targetDate = new Date ("April 15, 2024 00:00:00").getTime();
+const targetDate = new Date ("June 21, 2024 00:00:00").getTime();
 
 const x = setInterval (() => {
     let currTime = new Date().getTime();
