@@ -9,12 +9,43 @@
     <div class="container">
         <h2>Expense Tracker using JS</h2>
 
-        <form>
-            <input type="text" id="desciption" placeholder="Expense Description">
-            <br>
+        <form id="expenseForm">
 
-            
+            <input type="text" id="desciption" placeholder="Expense Description" required>
+            <br/>
+
+            <select id="category" required>
+                <option value="Select Category">Select Catefory</option>
+                <option value="Select Category">Food</option>
+                <option value="Select Category">Travel</option>
+                <option value="Select Category">Entertainment</option>
+                <option value="Select Category">Utilities</option>
+                <option value="Select Category">Others</option>
+            </select>
+            <br/>
+
+            <input type="number" id="amount" placeholder="Amount" required>
+            <br/>
+
+            <input type="submit" value="Add Expense">            
         </form>
+
+        <h3>Expense Summary</h3>
+
+        <table id="expenseTable">
+            
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+
+            <tbody id="expenseList">
+
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
