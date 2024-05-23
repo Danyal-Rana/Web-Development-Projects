@@ -27,6 +27,7 @@ body {
 }
 
 .container3 {
+    display: none;
     position: absolute;
     top: 26%;
     left: 40%;
