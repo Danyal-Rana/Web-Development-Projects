@@ -2,20 +2,17 @@ const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
     shortId: {
-        name: String,
-        required: true,
-        unique: true
+        name: { type: String, required: true, unique: true }
     },
     redirectURL: {
-        name: String,
-        required: true
+        name: { type: String, required: true }
     },
     visitHistory: [
         {timeStamp: {
             type: Number,
         }}
     ]
-}, timestamps = true);
+}, { timestamps: true });
 
 const URL = mongoose.model('URL', urlSchema);
 
