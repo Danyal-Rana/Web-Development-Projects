@@ -2,11 +2,10 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>
-      
-    </div>
+    <footer>
+      Designed by CodeWithZeeshu and Developed by Danyal
+    </footer>
   )
 }
 
 export default Footer
-
