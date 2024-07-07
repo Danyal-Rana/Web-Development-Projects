@@ -34,7 +34,8 @@ router.post("/send/mail", async (req, res, next) => {
 
     try {
         await sendEmail({
-            email: "rohailahmed303@gmail.com",
+            email: "aka.mdrana@gmail.com", // here you'll receive the email from the user
+            // email: "rohailahmed303@gmail.com",
             subject: "Good Day!",
             message,
             userEmail: email
