@@ -11,7 +11,7 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/favourites' element={<FavoritesPage />} />
+        <Route path='/favorites' element={<FavoritesPage />} />
       </Routes>
     </div>
   )

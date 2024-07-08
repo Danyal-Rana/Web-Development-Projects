@@ -1,5 +1,5 @@
 import React from 'react'
-import {Heart, HeartPulse, Soup} from 'lucide-react'
+import { Heart, HeartPulse, Soup } from 'lucide-react'
 
 const RecipeCard = () => {
     return (
