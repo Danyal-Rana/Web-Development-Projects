@@ -2,6 +2,8 @@ import React from 'react'
 import RecipeCard from '../components/RecipeCard'
 import { Search } from 'lucide-react'
 
+const APP_ID = "52d0bb9b";
+const APP_KEY = "8b842da3cfd652e39dce94ed0c8f2fa6";
 const HomePage = () => {
     return (
         <div className='bg-[#faf9fb] p-10 flex-1'>
