@@ -5,12 +5,12 @@ import {v2 as cloudinary} from 'cloudinary'
 
 export const register = catchAsyncErrors(async (req, res, next) => {
     if (!req.files || Object.keys(req.files).length===0) {
-        return next(errorHandler("Please upload Avatar and Resume", 400));
+        return next(new errorHandler("Please upload Avatar and Resume", 400));
     };
 
     const {avatar, resume} = req.files;
 
-    const cloudinaryResponseForAvatar = cloudinary.uploader.upload(
+    const cloudinaryResponseForAvatar = await cloudinary.uploader.upload(
         avatar.tempFilePath,
         {folder: "AVATARS"}
     );
@@ -22,7 +22,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     };
 
     //for resume
-    const cloudinaryResponseForResume = cloudinary.uploader.upload(
+    const cloudinaryResponseForResume = await cloudinary.uploader.upload(
         resume.tempFilePath,
         {folder: "RESUME"}
     );

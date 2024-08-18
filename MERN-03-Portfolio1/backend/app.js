@@ -26,7 +26,7 @@ app.use(fileUpload({
 }));
 
 app.use("/api/v1/message", messageRouter);
-app.use("/api/v1/register", userRouter);
+app.use("/api/v1/user", userRouter);
 
 dbConnection();
 app.use(errorMiddleware);
