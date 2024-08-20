@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter your password"],
         minLength: [8, "Password must contain atleast 8 charaters."],
-        select: false,
+        select: false, // This will not show the password in the response while fetching the user.
     },
     avatar: {
         public_id: {
