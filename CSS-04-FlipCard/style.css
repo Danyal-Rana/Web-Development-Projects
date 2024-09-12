@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e3dbf6, #a99bf9);
+    padding: 10px;
+}
+
+.card {
+    width: 350px;
+    height: 515px;
+    margin: 100px auto 0;
+    perspective: 1000px;
+}
+
+.cardInner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.front, .back {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front {
+    background: url(resuorces/ik.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#fHeading {
+    font-weight: 500;
+    color: white;
+}
+
+#fPara {
+    color: #ccc;
+    font-size: 13px;
+}
+
+#fButton {
+    width: 120px;
+    border: 1px solid black;
+    background: transparent;
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    color: white;
+    border-color: white;
+}
+
+.back {
+    background: white;
+    color: #333;
+    padding: 20px 40px;
+    transform: rotateY(180deg);
+
+}
+
+#bHeading {
+    font-size: 50px;
+    line-height: 55px;
+    margin-bottom: 10px;
+}
+
+.back h1 span {
+    font-weight: 400;
+}
+
+#bPara {
+    font-size: 14px;
+}
+
+.back img {
+    width: 120px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.col {
+    flex: 1;
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    position: relative;
+}
+
+.col h2 {
+    font-size: 20px;
+}
+
+.col::after {
+    content: '';
+    width: 2px;
+    height: 20px;
+    background: #7800ad;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.col:last-child::after {
+    display: none;
+}
+
+.col p {
+    margin-top: 5px;
+}
+
+.back button {
+    background: #7200ad;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    padding: 8px 25px;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-right: 15px;
+    box-shadow: 0 8px 10px rgba(120, 0, 173, 0.3);
+}
+
+.back a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.back a img {
+    width: 50%;
+}
+
+.card:hover .cardInner {
+    transform: rotateY(180deg);
+}
