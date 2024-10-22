@@ -19,7 +19,7 @@ const SIDEBAR_ITEMS = [
 ];
 
 const Sidebar = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     return (
         <motion.div
@@ -29,8 +29,8 @@ const Sidebar = () => {
         >
             <div className='h-full bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700'>
                 <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     className='p-2 rounded-full hover:bg-gray-700 transition-colors max-w-fit'
                 >
