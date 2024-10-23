@@ -1,3 +1,4 @@
 // .gitingore file for mern project
 node_modules
 build
+.env
