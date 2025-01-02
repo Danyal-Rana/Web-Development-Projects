@@ -1,6 +1,6 @@
-const Task = require('../models/Task');
+import Task from '../models/Task.js';
 
-exports.createTask = async (req, res) => {
+export const createTask = async (req, res) => {
     try {
         const task = new Task({
             ...req.body,
@@ -13,7 +13,7 @@ exports.createTask = async (req, res) => {
     }
 };
 
-exports.getTasks = async (req, res) => {
+export const getTasks = async (req, res) => {
     try {
         const tasks = await Task.find({ ownedBy: req.user._id });
         res.json(tasks);
@@ -22,7 +22,7 @@ exports.getTasks = async (req, res) => {
     }
 };
 
-exports.updateTask = async (req, res) => {
+export const updateTask = async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['title', 'content'];
     const isValidOperation = updates.every(update => allowedUpdates.includes(update));
@@ -46,7 +46,7 @@ exports.updateTask = async (req, res) => {
     }
 };
 
-exports.deleteTask = async (req, res) => {
+export const deleteTask = async (req, res) => {
     try {
         const task = await Task.findOneAndDelete({ _id: req.params.id, ownedBy: req.user._id });
 
