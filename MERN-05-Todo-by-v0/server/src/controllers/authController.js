@@ -26,3 +26,12 @@ export const login = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+export const verifyToken = async (req, res) => {
+    try {
+        const user = req.user;
+        res.json({ user: { id: user._id, username: user.username } });
+    } catch (error) {
+        res.status(401).json({ error: 'Invalid token' });
+    }
+};

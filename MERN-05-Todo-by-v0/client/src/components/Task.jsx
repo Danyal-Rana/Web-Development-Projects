@@ -5,8 +5,10 @@ const Task = ({ task, onTaskUpdated, onTaskDeleted }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState(task.title);
     const [content, setContent] = useState(task.content);
+    const [error, setError] = useState('');
 
     const handleUpdate = async () => {
+        setError('');
         try {
             const { data } = await axios.patch(
                 `${import.meta.env.VITE_API_URL}/tasks/${task._id}`,
@@ -20,11 +22,12 @@ const Task = ({ task, onTaskUpdated, onTaskDeleted }) => {
             onTaskUpdated(data);
             setIsEditing(false);
         } catch (error) {
-            console.error('Error updating task:', error);
+            setError('Failed to update task');
         }
     };
 
     const handleDelete = async () => {
+        setError('');
         try {
             await axios.delete(`${import.meta.env.VITE_API_URL}/tasks/${task._id}`, {
                 headers: {
@@ -33,29 +36,31 @@ const Task = ({ task, onTaskUpdated, onTaskDeleted }) => {
             });
             onTaskDeleted(task._id);
         } catch (error) {
-            console.error('Error deleting task:', error);
+            setError('Failed to delete task');
         }
     };
 
     if (isEditing) {
         return (
-            <div className="bg-white p-4 rounded shadow">
+            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full p-2 border rounded mb-2"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
                 />
                 <textarea
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    className="w-full p-2 border rounded mb-2"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-4 leading-tight focus:outline-none focus:shadow-outline"
+                    rows="3"
                 />
+                {error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
                 <div className="flex justify-end space-x-2">
-                    <button onClick={handleUpdate} className="bg-blue-500 text-white p-2 rounded">
+                    <button onClick={handleUpdate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Save
                     </button>
-                    <button onClick={() => setIsEditing(false)} className="bg-gray-300 p-2 rounded">
+                    <button onClick={() => setIsEditing(false)} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Cancel
                     </button>
                 </div>
@@ -64,14 +69,15 @@ const Task = ({ task, onTaskUpdated, onTaskDeleted }) => {
     }
 
     return (
-        <div className="bg-white p-4 rounded shadow">
-            <h3 className="text-lg font-semibold">{task.title}</h3>
-            <p className="mt-2">{task.content}</p>
-            <div className="flex justify-end space-x-2 mt-4">
-                <button onClick={() => setIsEditing(true)} className="text-blue-500">
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h3 className="text-xl font-semibold mb-2">{task.title}</h3>
+            <p className="text-gray-700 mb-4">{task.content}</p>
+            {error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
+            <div className="flex justify-end space-x-2">
+                <button onClick={() => setIsEditing(true)} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Edit
                 </button>
-                <button onClick={handleDelete} className="text-red-500">
+                <button onClick={handleDelete} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Delete
                 </button>
             </div>
