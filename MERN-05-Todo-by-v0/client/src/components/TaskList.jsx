@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import Task from './Task';
 
-const TaskList = () => {
-    const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-
+const TaskList = ({ tasks, setTasks }) => {
     useEffect(() => {
         fetchTasks();
     }, []);
 
     const fetchTasks = async () => {
         try {
-            setLoading(true);
             const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/tasks`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -21,14 +16,8 @@ const TaskList = () => {
             });
             setTasks(data);
         } catch (error) {
-            setError('Failed to fetch tasks');
-        } finally {
-            setLoading(false);
+            console.error('Error fetching tasks:', error);
         }
-    };
-
-    const handleTaskAdded = (newTask) => {
-        setTasks([...tasks, newTask]);
     };
 
     const handleTaskUpdated = (updatedTask) => {
@@ -38,14 +27,6 @@ const TaskList = () => {
     const handleTaskDeleted = (deletedTaskId) => {
         setTasks(tasks.filter((task) => task._id !== deletedTaskId));
     };
-
-    if (loading) {
-        return <div className="text-center">Loading tasks...</div>;
-    }
-
-    if (error) {
-        return <div className="text-center text-red-500">{error}</div>;
-    }
 
     return (
         <div className="space-y-4">

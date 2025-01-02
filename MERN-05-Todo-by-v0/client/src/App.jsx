@@ -7,6 +7,7 @@ import { getUserFromToken } from './utils/auth';
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -25,6 +26,10 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
+  };
+
+  const handleTaskAdded = (newTask) => {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
   if (loading) {
@@ -50,8 +55,8 @@ function App() {
       </header>
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <TaskForm />
-          <TaskList />
+          <TaskForm onTaskAdded={handleTaskAdded} />
+          <TaskList tasks={tasks} setTasks={setTasks} />
         </div>
       </main>
     </div>

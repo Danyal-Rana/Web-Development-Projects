@@ -19,9 +19,7 @@ const TaskForm = ({ onTaskAdded }) => {
                     },
                 }
             );
-            if (typeof onTaskAdded === 'function') {
-                onTaskAdded(data);
-            }
+            onTaskAdded(data);
             setTitle('');
             setContent('');
         } catch (error) {
